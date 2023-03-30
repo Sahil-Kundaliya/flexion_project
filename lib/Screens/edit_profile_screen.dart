@@ -7,14 +7,15 @@ class EditProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(
-            child: Text(
-              "Edit Profile",
-              style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
+          leading: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          centerTitle: true,
+          title: Text(
+            "Edit Profile",
+            style: TextStyle(
+                fontSize: 28, fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ),
         body: Column(
