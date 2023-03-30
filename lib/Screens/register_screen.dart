@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget {
             height: 70,
           ),
           Text(
-            "Login",
+            "Register",
             style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
@@ -22,10 +22,26 @@ class LoginScreen extends StatelessWidget {
           Container(
             height: 200,
             width: 250,
-            child: Image.asset("assets/images/Group 8.png"),
+            child: Image.asset("assets/images/Group 9.png"),
           ),
           const SizedBox(
             height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: TextField(
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  filled: true,
+                  hintStyle: TextStyle(color: Colors.grey[800]),
+                  hintText: "Name",
+                  fillColor: Colors.transparent),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -52,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   filled: true,
                   hintStyle: TextStyle(color: Colors.grey[800]),
-                  hintText: "Password",
+                  hintText: "Phone Number",
                   fillColor: Colors.transparent),
             ),
           ),
@@ -70,7 +86,7 @@ class LoginScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
-                  'Login',
+                  'Submit',
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -91,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                     textStyle: const TextStyle(fontSize: 17),
                   ),
                   onPressed: () {},
-                  child: const Text("SIGN UP"),
+                  child: const Text("LOG IN"),
                 )
               ],
             ),
