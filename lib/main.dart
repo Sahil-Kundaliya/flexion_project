@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Screens/logo_screen.dart';
+import 'Screens/logo_description_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LogoScreen(),
+      home: const LogoDescription(),
     );
   }
 }

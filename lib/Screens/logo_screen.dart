@@ -9,9 +9,10 @@ class LogoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 40, left: 18),
+          padding: const EdgeInsets.only(top: 40, left: 20),
           child: Text(
             "Logo",
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
