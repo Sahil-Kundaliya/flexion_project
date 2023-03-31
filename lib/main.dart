@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Screens/logo_screen.dart';
+import 'Screens/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +20,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -34,9 +34,10 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             primaryColor: Colors.black,
           ),
-          home: LogoScreen(),
-          initialRoute: "/login_screen",
+          debugShowCheckedModeBanner: false,
+          initialRoute: "/",
           routes: {
+            "/": (context) => SplashScreen(),
             "/login_screen": (context) => LoginScreen(),
             "/register_screen": (context) => RegisterScreen(),
             "/logo_screen": (context) => LogoScreen(),

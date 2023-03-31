@@ -1,13 +1,37 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
   static const routeName = "/edit_profile_screen";
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  final TextEditingController _emailIdController = new TextEditingController();
+  final TextEditingController _nameIdController = new TextEditingController();
+  final TextEditingController _phoneNumberController =
+      new TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _emailIdController.dispose();
+    _nameIdController.dispose();
+    _phoneNumberController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
           leading: Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -46,6 +70,7 @@ class EditProfileScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextField(
+                    controller: _nameIdController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -74,6 +99,7 @@ class EditProfileScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextField(
+                    controller: _emailIdController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -102,6 +128,8 @@ class EditProfileScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextField(
+                    controller: _phoneNumberController,
+                    inputFormatters: [LengthLimitingTextInputFormatter(10)],
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -118,7 +146,9 @@ class EditProfileScreen extends StatelessWidget {
             Container(
               width: MediaQuery.of(context).size.width * 0.6,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  updateProfile();
+                },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue,
                   shape: RoundedRectangleBorder(
@@ -136,5 +166,25 @@ class EditProfileScreen extends StatelessWidget {
             ),
           ],
         ));
+  }
+
+  Future<void> updateProfile() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.instance;
+
+    String email = preferences.getString('email').toString();
+    if (_emailIdController.text.trim() != '' &&
+        _phoneNumberController.text != '' &&
+        _nameIdController.text.trim() != '') {
+      await db.collection('Users').doc(email).set({
+        'name': _nameIdController.text.trim(),
+        'phoneNumber': _phoneNumberController.text,
+        'email': _emailIdController.text.trim(),
+      });
+      Navigator.pop(context);
+    } else {
+      var snackBar = SnackBar(content: Text('Please Enter All Value'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
 }

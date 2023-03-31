@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../firebase_authentication/firebase_authentication.dart';
+
 class DrawerScreen extends StatelessWidget {
   const DrawerScreen({Key? key}) : super(key: key);
 
@@ -26,39 +28,53 @@ class DrawerScreen extends StatelessWidget {
           height: 50,
         ),
         Divider(),
-        Container(
-          height: 67,
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30),
-            child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Update Profile",
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                )),
+        GestureDetector(
+          onTap: () => Navigator.of(context).pushNamed("/edit_profile_screen"),
+          child: Container(
+            height: 67,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Update Profile",
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )),
+            ),
           ),
         ),
         Divider(),
-        Container(
-          height: 67,
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 30),
-            child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Update Profile",
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
-                )),
+        GestureDetector(
+          onTap: () {
+            logOutUser();
+            Navigator.of(context).pushReplacementNamed("/login_screen");
+          },
+          child: Container(
+            height: 67,
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Logout",
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  )),
+            ),
           ),
         ),
         Divider(),
       ],
     );
+  }
+
+  void logOutUser() {
+    FirebaseAuthentication authentication = FirebaseAuthentication();
+    authentication.signOut();
   }
 }

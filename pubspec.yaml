@@ -39,7 +39,8 @@ dependencies:
   webview_flutter: ^4.0.7
   firebase_auth: ^4.4.0
   firebase_core: ^2.9.0
-  firebase_storage: ^11.1.0
+  shared_preferences: ^2.0.20
+  cloud_firestore: ^4.5.0
 
 
 dev_dependencies:

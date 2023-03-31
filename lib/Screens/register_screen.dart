@@ -176,7 +176,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       FirebaseAuthentication()
           .signUp(
               email: _emailIdController.text.trim(),
-              password: _passwordController.text.trim())
+              password: _passwordController.text,
+              name: _nameIdController.text.trim(),
+              phoneNumber: _phoneNumberController.text)
           .then((result) {
         if (result == null) {
           Navigator.pushReplacementNamed(context, "/logo_screen");
