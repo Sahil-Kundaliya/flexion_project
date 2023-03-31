@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class LogoDescription extends StatelessWidget {
   const LogoDescription({Key? key}) : super(key: key);
+  static const routeName = "/logo_description_screen";
 
   @override
   Widget build(BuildContext context) {
