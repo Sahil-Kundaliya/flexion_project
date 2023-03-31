@@ -31,13 +31,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
+        body: SingleChildScrollView(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(
             height: 70,
           ),
-          Text(
+          const Text(
             "Register",
             style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
@@ -132,8 +134,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   borderRadius: BorderRadius.circular(25),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
+              child: const Padding(
+                padding: EdgeInsets.all(15.0),
                 child: Text(
                   'Submit',
                   style: TextStyle(fontSize: 20),
@@ -141,13 +143,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
           ),
-          const Spacer(),
           Padding(
             padding: const EdgeInsets.only(bottom: 22),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "DON’T HAVE AN ACCOUNT?",
                   style: TextStyle(fontSize: 17),
                 ),
@@ -188,7 +189,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         }
       });
     } else {
-      var snackBar = SnackBar(content: Text('Please Enter All Value'));
+      var snackBar = const SnackBar(content: Text('Please Enter All Value'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }

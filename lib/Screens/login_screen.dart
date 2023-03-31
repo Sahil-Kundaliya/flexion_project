@@ -25,13 +25,13 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
+        body: SingleChildScrollView(
       child: Column(
         children: [
           const SizedBox(
             height: 70,
           ),
-          Text(
+          const Text(
             "Login",
             style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
@@ -91,8 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: BorderRadius.circular(25),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
+              child: const Padding(
+                padding: EdgeInsets.all(15.0),
                 child: Text(
                   'Login',
                   style: TextStyle(fontSize: 20),
@@ -100,13 +100,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-          const Spacer(),
+          const SizedBox(height: 190),
           Padding(
             padding: const EdgeInsets.only(bottom: 22),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "DON’T HAVE AN ACCOUNT?",
                   style: TextStyle(fontSize: 17),
                 ),
@@ -143,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       });
     } else {
-      var snackBar = SnackBar(content: Text('Please Enter All Value'));
+      var snackBar = const SnackBar(content: Text('Please Enter All Value'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
