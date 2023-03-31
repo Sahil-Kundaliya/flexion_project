@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "754125499954",
+    "project_id": "projets2-d23ab",
+    "storage_bucket": "projets2-d23ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754125499954:android:78b3eacb995a566e52162b",
+        "android_client_info": {
+          "package_name": "com.flexion.app.flexion_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754125499954-ims21bkrl0s8m327ffc38v19rjp8hrr4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flexion.app.flexion_project",
+            "certificate_hash": "ec7d50782cb3691820e3bd921af5e6ec9620caec"
+          }
+        },
+        {
+          "client_id": "754125499954-kud91qof5vageeojbqilsdgkt3vhov5j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApAh9moqbT-WBjNlR3yFUT0FzEWTbaFuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754125499954-kud91qof5vageeojbqilsdgkt3vhov5j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

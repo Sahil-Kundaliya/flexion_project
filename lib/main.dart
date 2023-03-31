@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flexion_project/Screens/edit_profile_screen.dart';
 import 'package:flexion_project/Screens/login_screen.dart';
 import 'package:flexion_project/Screens/logo_description_screen.dart';
@@ -9,7 +10,9 @@ import 'package:provider/provider.dart';
 
 import 'Screens/logo_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -29,9 +32,10 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: ThemeData(
             primarySwatch: Colors.blue,
+            primaryColor: Colors.black,
           ),
           home: LogoScreen(),
-          initialRoute: "/logo_screen",
+          initialRoute: "/login_screen",
           routes: {
             "/login_screen": (context) => LoginScreen(),
             "/register_screen": (context) => RegisterScreen(),

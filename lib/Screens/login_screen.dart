@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class LoginScreen extends StatelessWidget {
+import '../firebase_authentication/firebase_authentication.dart';
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
   static const routeName = "/login_screen";
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailIdController = new TextEditingController();
+  final TextEditingController _passwordController = new TextEditingController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _emailIdController.dispose();
+    _passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +49,7 @@ class LoginScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: TextField(
+              controller: _emailIdController,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -47,6 +66,8 @@ class LoginScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: TextField(
+              inputFormatters: [LengthLimitingTextInputFormatter(6)],
+              controller: _passwordController,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -61,7 +82,9 @@ class LoginScreen extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width * 0.6,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                FirebaseSignIn();
+              },
               style: ElevatedButton.styleFrom(
                 primary: Colors.blue,
                 shape: RoundedRectangleBorder(
@@ -91,7 +114,9 @@ class LoginScreen extends StatelessWidget {
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 17),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/register_screen");
+                  },
                   child: const Text("SIGN UP"),
                 )
               ],
@@ -100,5 +125,26 @@ class LoginScreen extends StatelessWidget {
         ],
       ),
     ));
+  }
+
+  void FirebaseSignIn() {
+    if (_emailIdController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty) {
+      FirebaseAuthentication()
+          .signIn(
+              email: _emailIdController.text.trim(),
+              password: _passwordController.text.trim())
+          .then((result) {
+        if (result == null) {
+          Navigator.pushReplacementNamed(context, "/logo_screen");
+        } else {
+          var snackBar = SnackBar(content: Text(result));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        }
+      });
+    } else {
+      var snackBar = SnackBar(content: Text('Please Enter All Value'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
 }
