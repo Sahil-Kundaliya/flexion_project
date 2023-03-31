@@ -19,20 +19,21 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     LoadData();
     Timer(
-        Duration(seconds: 5),
-        () => Navigator.of(context).pushReplacementNamed(
-            _isLoading ? "/login_screen" : "/logo_screen"));
+      Duration(seconds: 3),
+      () => Navigator.of(context)
+          .pushReplacementNamed(_isLoading ? "/login_screen" : "/logo_screen"),
+    );
   }
 
   Future<void> LoadData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     _isLoading = true;
-    String emailData = preferences.getString('email').toString();
-    String? passwordData = preferences.getString('password').toString();
-    if (emailData.isNotEmpty &&
-        passwordData.isNotEmpty &&
-        emailData != '' &&
-        passwordData != '') {
+    String? emailData = preferences.getString('email');
+    String? passwordData = preferences.getString('password');
+    if (emailData != null &&
+        passwordData != null &&
+        emailData.isNotEmpty &&
+        passwordData.isNotEmpty) {
       _isLoading = false;
     }
     setState(() {});
